@@ -49,22 +49,20 @@ h1 {
 }
 
 /* 📱 GRID */
-.container {
+  .container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  padding: 10px;
+  grid-template-columns: 1fr; /* 🔥 jadi 1 kolom biar panjang ke bawah */
+  gap: 6px;
+  padding: 8px;
 }
-
-/* 🧾 CARD */
 .card {
-  background: rgba(0,0,0,0.5);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 11px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: masuk 0.5s forwards;
+  border: 1px solid #a855f7;
+  background: rgba(0,0,0,0.4);
+}
+.card {
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 8px;
 }
 
 @keyframes masuk {
@@ -128,10 +126,28 @@ const students = [
 "Syaakira Kireinisa","Yusbikha Faqih Saputra","Zhilvya Dwina A-Zahra","Zikra Achyar Nurlafi"
 ];
 
+const hobbies = [
+"Gaming 🎮","Membaca 📚","Menggambar 🎨","Nonton 🎬","Musik 🎧",
+"Futsal ⚽","Basket 🏀","Ngoding 💻","Scroll TikTok 📱","Fotografi 📸"
+];
+
+const dreams = [
+"Programmer 💻","Dokter 🏥","Guru 📚","Polisi 🚓","Pilot ✈️",
+"Desainer 🎨","YouTuber 🎥","Pengusaha 💼","Atlet 🏆","Artis 🎤"
+];
+
+const ages = ["13","14","13-14"];
+
 const list = document.getElementById("list");
 const popup = document.getElementById("popup");
 const content = document.getElementById("popupContent");
 
+/* RANDOM FUNCTION */
+function random(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+/* CREATE CARD */
 students.forEach((name, i) => {
   const div = document.createElement("div");
   div.className = "card";
@@ -145,13 +161,14 @@ students.forEach((name, i) => {
   list.appendChild(div);
 });
 
+/* POPUP */
 function showProfile(name) {
   popup.style.display = "flex";
   content.innerHTML = `
     <h3>${name}</h3>
-    <p>🌙 Umur: 13-14</p>
-    <p>🎯 Hobi: Bermain & Scroll HP 😭</p>
-    <p>✨ Cita-cita: Sukses di masa depan 🔥</p>
+    <p>🌙 Umur: ${random(ages)}</p>
+    <p>🎯 Hobi: ${random(hobbies)}</p>
+    <p>✨ Cita-cita: ${random(dreams)}</p>
     <button onclick="closePopup()">Tutup</button>
   `;
 }
@@ -159,6 +176,7 @@ function showProfile(name) {
 function closePopup() {
   popup.style.display = "none";
 }
+  
 </script>
 
 </body>
